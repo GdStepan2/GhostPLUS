@@ -1,0 +1,15 @@
+artifacts/
+release/
+__pycache__/
+node_modules/
+*.pyc
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crx
+*_sample.html
+*_sample.css
+*_sample.js
+tests/fixtures/site/

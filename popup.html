@@ -1,0 +1,309 @@
+/* GhostSocial V2 enhancement: retain native colours, components and content. */
+html.gp-enabled { --gp-accent:#b39af4; --gp-rgb:179,154,244; --gp-column:760px; --gp-nav:206px; --gp-gap:28px; --gp-total:994px; --primary:var(--gp-accent); --primary2:var(--gp-accent); --accent:var(--gp-accent); }
+html.gp-enabled[data-gp-accent="mint"] { --gp-accent:#82cfa7; --gp-rgb:130,207,167; }
+html.gp-enabled[data-gp-accent="rose"] { --gp-accent:#e5a3bb; --gp-rgb:229,163,187; }
+html.gp-enabled[data-gp-accent="blue"] { --gp-accent:#9dbbf4; --gp-rgb:157,187,244; }
+html.gp-enabled[data-gp-width="compact"] { --gp-column:640px; --gp-total:874px; }
+html.gp-enabled[data-gp-width="wide"] { --gp-column:900px; --gp-total:1134px; }
+.gp-enabled .post-card { border-radius:0; }
+.gp-enabled .post-content { overflow-wrap:anywhere; }
+.gp-enabled .post-name { min-width:0; }
+.gp-enabled :is(button,a,input,textarea):focus-visible { outline:2px solid var(--primary); outline-offset:3px; }
+.gp-enabled ::selection { background:rgba(var(--gp-rgb),.28); }
+.gp-enabled { scroll-padding-top:calc(var(--gp-header-space,56px) + 12px); }
+.gp-enabled .gp-registration { font-size:11px; line-height:1.5; color:var(--sub,#9b9ba5); margin-top:6px; }
+.gp-nav-icon { display:none; }
+/* One layout rule at every width: the normal header occupies its own space.
+   Minisky keeps its separate overlay header and full-height player. */
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) { padding-top:0 !important; }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #appHeader { position:sticky !important; top:0 !important; height:auto !important; }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #appMain { padding-top:8px !important; }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch { position:static !important; transform:none !important; margin:0 auto !important; }
+.gp-enabled:not(.gp-desktop) body.ghostsocial-v2:not(.miniska-mode) #appHeader { width:min(100%,var(--content-w,640px)); margin-inline:auto; }
+@media(max-width:1099px) { .gp-enabled body.ghostsocial-v2:not(.miniska-mode) #appHeader { width:min(100%,var(--content-w,640px)); margin-inline:auto; } }
+@media(min-width:1100px) {
+  .gp-enabled.gp-desktop { --content-w:var(--gp-column); --nav-h:0px; }
+  .gp-enabled.gp-desktop body.ghostsocial-v2 { padding-top:0 !important; padding-bottom:0 !important; }
+  .gp-enabled.gp-desktop #appMain { box-sizing:border-box; width:var(--gp-column) !important; max-width:var(--gp-column) !important; margin:0 0 0 calc((100vw - var(--gp-total)) / 2 + var(--gp-nav) + var(--gp-gap)) !important; padding:8px 0 40px !important; border-inline:1px solid var(--border,#28282e); }
+  /* Stay in document flow: no second copy of the header height in main padding. */
+  .gp-enabled.gp-desktop #appHeader { box-sizing:border-box; position:sticky !important; top:0 !important; left:auto !important; right:auto !important; width:var(--gp-column) !important; max-width:var(--gp-column) !important; height:auto !important; margin:0 0 0 calc((100vw - var(--gp-total)) / 2 + var(--gp-nav) + var(--gp-gap)) !important; }
+  .gp-enabled.gp-desktop #feedSwitch { position:static !important; width:100% !important; max-width:none; transform:none !important; margin:0 !important; height:44px; }
+  .gp-enabled.gp-desktop .header-top { padding-inline:24px; }
+  .gp-enabled.gp-desktop #dtSideLeft { box-sizing:border-box; position:fixed !important; top:20px !important; left:calc((100vw - var(--gp-total)) / 2) !important; width:var(--gp-nav) !important; bottom:24px; padding:8px 0 !important; overflow-y:auto; }
+  .gp-enabled.gp-desktop.gp-app-ready #dtSideLeft { display:flex !important; flex-direction:column; gap:4px; }
+  .gp-enabled.gp-desktop #dtSideLeft > div:first-child { font-size:20px !important; padding:8px 13px 27px !important; letter-spacing:-.6px !important; background:none !important; -webkit-text-fill-color:var(--primary) !important; }
+  .gp-enabled.gp-desktop .dt-nav-btn { position:relative; display:flex; align-items:center; gap:12px; min-height:46px; margin:2px 0; padding:11px 13px; border-radius:10px; background:transparent; color:var(--sub,#9b9ba5); font-size:14px; font-weight:500; text-align:left; }
+  .gp-enabled.gp-desktop .dt-nav-btn.active { background:rgba(var(--gp-rgb),.1); color:var(--primary); }
+  .gp-enabled.gp-desktop .dt-nav-btn:hover { background:var(--surface,#1b1b1f); color:var(--text,#f1f1f4); }
+  .gp-enabled.gp-desktop .dt-nav-btn > i, .gp-enabled.gp-desktop .dt-nav-btn .nav-icon-wrap > i { display:none; }
+  .gp-enabled.gp-desktop .gp-nav-icon { display:block; width:21px; height:21px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:1.65; stroke-linecap:round; stroke-linejoin:round; }
+  .gp-enabled.gp-desktop .dt-nav-btn .nav-icon-wrap { position:absolute; right:12px; }
+  .gp-enabled.gp-desktop .dt-create-btn { margin:18px 0 24px; padding:12px 15px; border-radius:10px; background:var(--primary); color:#211a2c; font-size:13px; font-weight:650; }
+  .gp-enabled.gp-desktop .dt-side-foot { margin-top:auto; padding:15px 13px 0; color:var(--muted,#777782); font-size:10px; }
+  .gp-enabled.gp-desktop #appNav { display:none !important; }
+  .gp-enabled.gp-desktop #screenMinisky { left:calc((100vw - var(--gp-total)) / 2 + var(--gp-nav) + var(--gp-gap)) !important; right:auto !important; width:var(--gp-column) !important; }
+  .gp-enabled.gp-desktop .post-card { padding:22px 24px 14px; }
+  .gp-enabled.gp-desktop .post-header { margin-bottom:15px; }
+  .gp-enabled.gp-desktop .post-content { line-height:1.7; }
+  .gp-enabled.gp-desktop .post-footer { gap:18px; }
+  .gp-enabled.gp-desktop .post-footer .act-btn { min-height:40px; min-width:40px; border-radius:8px; }
+  .gp-enabled.gp-desktop .post-footer .act-btn:hover { background:rgba(var(--gp-rgb),.07); }
+  .gp-enabled.gp-desktop:not(.gp-glass) #appHeader { background:var(--bg,#111113) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+  .gp-enabled.gp-desktop.gp-glass #appHeader { background:rgba(17,17,19,.88) !important; backdrop-filter:blur(16px) !important; -webkit-backdrop-filter:blur(16px) !important; }
+}
+/* Keep player coordinates relative to the feed column, including the header.
+   The native carousel's transform remains untouched for multi-file posts. */
+@media(min-width:1100px) {
+  .gp-enabled.gp-desktop body.miniska-mode #appMain { padding:0 !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #appHeader { position:fixed !important; left:calc((100vw - var(--gp-total)) / 2 + var(--gp-nav) + var(--gp-gap)) !important; margin:0 !important; height:60px !important; background:transparent !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; border:0 !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #feedSwitch { position:absolute !important; inset:8px 0 auto !important; width:100% !important; max-width:100% !important; margin:0 !important; gap:24px; }
+  .gp-enabled.gp-desktop body.miniska-mode #screenMinisky { top:0 !important; bottom:0 !important; height:100dvh !important; min-height:0 !important; max-width:var(--gp-column) !important; margin:0 !important; overflow:hidden; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed { width:100% !important; height:100% !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-card { display:block !important; width:100% !important; max-width:100% !important; height:100% !important; min-height:0 !important; margin:0 !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .mskc-ftrack { width:100% !important; height:100% !important; min-width:0 !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .mskc-fslide { flex:0 0 100% !important; width:100% !important; height:100% !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed :is(.mskc-fslide video,.mskc-fslide img,.msk-card > video) { width:100% !important; height:100% !important; max-width:100% !important; max-height:100% !important; object-fit:contain !important; object-position:center !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .mskc-fit-landscape { width:100% !important; height:100% !important; object-fit:contain !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-overlay { position:absolute !important; inset:auto 76px 0 0 !important; width:auto !important; z-index:3; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-info { padding:44px 20px 20px !important; background:linear-gradient(transparent,#000b) !important; border-radius:0; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-info::before { display:none !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-side { position:absolute !important; inset:auto 14px 24px auto !important; margin:0 !important; gap:8px; z-index:4; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-side button { width:44px; height:44px; border:1px solid #ffffff24; border-radius:50% !important; background:#111113b3; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .msk-play-overlay { position:absolute !important; inset:0 !important; }
+  .gp-enabled.gp-desktop body.miniska-mode #mskFeed .mskc-vslider { top:60px !important; left:16px !important; right:16px !important; width:auto !important; }
+}
+/* Bigger, consistent targets without changing icon semantics or handlers. */
+.gp-enabled body.ghostsocial-v2 :is(.hdr-icon-btn,.attach-btn,.search-clear,.post-menu-btn,.back-btn,.gsm-back) { min-width:36px; min-height:36px; display:inline-grid; place-items:center; border-radius:10px; }
+.gp-enabled body.ghostsocial-v2 :is(.pub-btn,.follow-btn,.comment-send) { min-height:40px; border-radius:10px; }
+.gp-enabled body.ghostsocial-v2 :is(.prof-tab,.gsm-item) { min-height:48px; }
+.gp-enabled body.ghostsocial-v2 :is(.hdr-icon-btn,.attach-btn,.search-clear,.post-menu-btn,.back-btn,.gsm-back):hover { background:var(--surface2); }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel { width:min(480px,calc(100% - 32px)); max-height:calc(100dvh - 48px); padding:20px; border:1px solid var(--border-strong); border-radius:20px; box-shadow:0 24px 100px #0008; }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel :is(.gsm-head,.gsm-subhead) { padding:2px 4px 18px; }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gsm-av { width:48px; height:48px; border:1px solid var(--border-strong); }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gsm-item { padding:14px 12px; margin-top:4px; border:0; border-radius:11px; gap:14px; }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gsm-item:hover { background:var(--surface2); }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gsm-foot { margin-top:16px; padding-top:12px; border-top:1px solid var(--border); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-body { gap:18px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:100%; gap:8px; padding:14px 8px; border:1px solid var(--border); border-radius:16px; background:var(--surface); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-stats .stat-box { min-width:0; margin:0; padding:4px 6px; text-align:center; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-stats .stat-val { font-size:23px; line-height:1.3; font-weight:700; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-stats .stat-lbl { margin-top:3px; font-size:11px; color:var(--sub); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-body .prof-name { line-height:1.2; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-actions-public { gap:10px; flex-wrap:wrap; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-music { border-radius:18px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card:has(> .gs-media-banner:not([hidden])) > .gs-profile-banner { -webkit-mask-image:none !important; mask-image:none !important; border-radius:20px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card > .gs-media-banner:not([hidden]) { position:relative; z-index:1; width:calc(100% - 40px); height:112px; margin:-32px auto 0; border:4px solid var(--bg); border-radius:16px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card:has(> .gs-media-banner:not([hidden])) > .prof-av { z-index:2; margin-top:-32px; margin-bottom:20px; border:4px solid var(--bg); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs { gap:6px; padding-inline:16px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab { border-radius:10px 10px 0 0; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab:hover { background:var(--surface); }
+/* Compact profile rhythm, including accounts with a separate media banner. */
+.gp-enabled body.ghostsocial-v2 .gs-profile-card { row-gap:0; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card > .prof-av { margin-bottom:16px !important; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-body { gap:16px; }
+.gp-enabled body.ghostsocial-v2 #screenFullProfile .gs-profile-actions-public :is(#fpFollowWrap,#fpMessageWrap) { flex:1 1 0 !important; min-width:0; width:auto !important; }
+.gp-enabled body.ghostsocial-v2 #screenFullProfile .gs-profile-actions-public :is(#fpFollowBtn,#fpMessageBtn) { display:flex; align-items:center; justify-content:center; gap:8px; width:100% !important; min-height:42px !important; border-radius:11px !important; }
+/* Native filter buttons keep their existing actions and selected state. */
+.gp-enabled body.ghostsocial-v2 #headerFilters { box-sizing:border-box; width:100%; max-width:100%; height:56px; padding:8px 16px; gap:6px; align-items:center; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; }
+.gp-enabled body.ghostsocial-v2 #headerFilters .filter-btn { display:inline-flex; align-items:center; justify-content:center; flex:1 0 auto; min-height:36px; min-width:62px; margin:0; padding:8px 12px; border:1px solid transparent; border-radius:10px; color:var(--sub); background:transparent; font-size:12px; font-weight:600; line-height:1.3; white-space:nowrap; }
+.gp-enabled body.ghostsocial-v2 #headerFilters .filter-btn:hover { background:var(--surface); color:var(--text); }
+.gp-enabled body.ghostsocial-v2 #headerFilters .filter-btn.active { border-color:rgba(var(--gp-rgb),.2); background:rgba(var(--gp-rgb),.12); color:var(--primary); box-shadow:inset 0 1px 0 #ffffff06; }
+.gp-enabled body.ghostsocial-v2 #feedSwitch:empty { display:none !important; height:0 !important; }
+.gp-tab-label { display:none; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs { display:flex; align-items:stretch; gap:4px; padding:6px 12px 0; min-height:60px; border-bottom:1px solid var(--border); background:var(--bg); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab { position:relative; display:flex; flex:1 1 0; align-items:center; justify-content:center; gap:8px; min-width:0; min-height:52px; padding:10px 8px; border-radius:10px 10px 0 0; color:var(--sub); background:transparent; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab i { font-size:16px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab.active { color:var(--primary); background:rgba(var(--gp-rgb),.07); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab.active::after { inset:auto 14px 0; height:3px; background:var(--primary); border-radius:3px 3px 0 0; }
+.gp-enabled .gp-tab-label { display:inline; font-size:12px; font-weight:600; line-height:1.3; }
+@media(max-width:420px) { .gp-enabled body.ghostsocial-v2 .gs-profile-tabs { padding-inline:6px; gap:2px; } .gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab { flex-direction:column; gap:5px; padding:8px 4px; } .gp-enabled .gp-tab-label { font-size:10px; } }
+@media(min-width:700px) {
+  .gp-enabled body.ghostsocial-v2 #gsMenuPanel { inset:0 !important; height:fit-content; margin:auto; border-radius:20px !important; overflow:hidden !important; border-top-color:var(--border-strong) !important; }
+  .gp-enabled body.ghostsocial-v2 #gsMenuPanel::before,.gp-enabled body.ghostsocial-v2 #gsMenuPanel::after { display:none !important; }
+  .gp-enabled body.ghostsocial-v2 .gs-profile-card { padding:24px; }
+  .gp-enabled body.ghostsocial-v2 .gs-profile-body { max-width:620px; margin:0 auto; padding:0 8px 12px; }
+}
+@media(min-width:1100px) and (max-width:1199px) {
+  html.gp-enabled[data-gp-width="wide"] { --gp-column:calc(100vw - 282px); --gp-total:calc(100vw - 48px); }
+}
+@media(prefers-reduced-motion:no-preference) {
+  .gp-enabled.gp-motion :is(.post-card,.profile-card) { animation:gp-arrive .24s cubic-bezier(.2,.7,.3,1) backwards; }
+  .gp-enabled.gp-motion :is(button,a) { transition:background-color .18s,color .18s,border-color .18s,box-shadow .18s; }
+  .gp-enabled.gp-motion .post-card { transition:background-color .2s; }
+}
+@keyframes gp-arrive { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+/* The native double-tap heart had styles only inside Minisky. */
+.gp-enabled body.ghostsocial-v2 :is(.post-card,.msk-card) > .dt-heart { position:absolute; left:50%; top:50%; z-index:8; width:72px; height:72px; display:grid; place-items:center; margin:0; padding:0; line-height:1; pointer-events:none; opacity:0; transform:translate(-50%,-50%) scale(.6); }
+.gp-enabled body.ghostsocial-v2 :is(.post-card,.msk-card) > .dt-heart svg { display:block; width:100% !important; height:100% !important; max-width:none; }
+.gp-enabled body.ghostsocial-v2 :is(.post-card,.msk-card) > .dt-heart.go { animation:gp-heart-pop .7s ease-out forwards !important; }
+@keyframes gp-heart-pop { 0%{opacity:0;transform:translate(-50%,-50%) scale(.6)} 25%{opacity:1;transform:translate(-50%,-50%) scale(1.08)} 65%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-55%) scale(.94)} }
+@media(prefers-reduced-motion:reduce) { .gp-enabled body.ghostsocial-v2 :is(.post-card,.msk-card) > .dt-heart.go { animation:none !important; opacity:0; } }
+/* Confirmation is part of the extension, and leaves native links intact. */
+.gp-departure { width:min(420px,calc(100vw - 32px)); padding:26px; border:1px solid var(--border-strong,#3a3a43); border-radius:20px; background:var(--surface,#1b1b1f); color:var(--text,#f1f1f4); box-shadow:0 24px 90px #0009; }
+.gp-departure::backdrop { background:#0009; backdrop-filter:blur(6px); }
+.gp-departure h2 { margin:0 0 12px; font:650 21px/1.3 system-ui; letter-spacing:-.5px; }
+.gp-departure p { margin:0; color:var(--sub,#9b9ba5); font:14px/1.6 system-ui; }
+.gp-dialog-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:24px; }
+.gp-dialog-actions button { min-height:42px; padding:10px 18px; border:1px solid var(--border-strong,#3a3a43); border-radius:10px; background:var(--surface2,#242429); color:var(--text,#f1f1f4); font:600 13px system-ui; cursor:pointer; }
+.gp-dialog-actions .gp-confirm { background:var(--primary,#b39af4); border-color:transparent; color:#1a1427; }
+/* Native audio markup and events are preserved. */
+.gp-enabled body.ghostsocial-v2 .audio-widget.gs-audio-card { padding:16px !important; gap:14px; margin:14px 0; border:1px solid var(--border) !important; border-radius:15px !important; background:var(--surface) !important; }
+.gp-enabled body.ghostsocial-v2 .post-media:has(> .gs-audio-card:only-child) { border:0; }
+.gp-enabled body.ghostsocial-v2 .post-media > .gs-audio-card:only-child { margin:0; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-art { width:56px; height:56px; flex:0 0 56px; border-radius:12px; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-title { font-size:14px; font-weight:650; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-controls { gap:12px; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-card .audio-play-btn { width:36px; height:36px; min-width:36px; flex:0 0 36px; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-card .audio-waveform { overflow:hidden; }
+.gp-enabled body.ghostsocial-v2 .gs-audio-card .audio-time { color:var(--sub); }
+.gp-enabled body.ghostsocial-v2 #reportSheet { padding:20px; align-items:center !important; }
+.gp-enabled body.ghostsocial-v2 #reportSheet > div { padding:22px !important; background:var(--surface) !important; border:1px solid var(--border-strong) !important; border-radius:20px !important; max-height:calc(100dvh - 40px); overflow-y:auto; box-shadow:0 24px 100px #0008; }
+.gp-enabled body.ghostsocial-v2 #reportSheet > div > div:first-child { display:none; }
+.gp-enabled body.ghostsocial-v2 #reportSheet h3 { margin:0 0 16px !important; text-transform:none !important; font-size:19px !important; letter-spacing:-.3px !important; color:var(--text) !important; }
+.gp-enabled body.ghostsocial-v2 #reportOpts button { min-height:48px; border-radius:11px !important; }
+.gp-enabled body.ghostsocial-v2 #reportOpts button:hover { background:var(--surface2) !important; }
+.gp-enabled body.ghostsocial-v2 #reportCancel { display:block; width:100%; min-height:42px; margin-top:16px !important; border:1px solid var(--border) !important; border-radius:10px; background:var(--surface2) !important; color:var(--text) !important; }
+/* Composer enhancement covers both the original screen and the dynamic overlay. */
+.gp-create-back,.gp-composer-title { display:none; }
+.gp-enabled .gp-create-back { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:8px 14px; border:1px solid var(--border); border-radius:10px; color:var(--text); background:var(--surface); cursor:pointer; font:600 13px/1.4 system-ui; }
+.gp-enabled #screenCreate .gs-v2-screen-heading { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.gp-enabled #screenCreate .gs-v2-screen-heading h1 { margin:0; font-size:21px !important; }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .create-card { padding:22px; border:1px solid var(--border); border-radius:18px; background:var(--surface); }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .post-text-editor { min-height:180px; }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) #postText { min-height:180px; padding:8px 0; max-height:45dvh; }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) #postTextMirror { padding:8px 0; font-size:16px; line-height:1.65; }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .create-footer { padding-top:16px; border-top:1px solid var(--border); gap:12px; }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .attach-btn { width:40px; height:40px; border-radius:10px; background:var(--surface2); }
+.gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .pub-btn { padding-inline:20px; }
+.gp-enabled body.ghostsocial-v2 #mskCompose > .gp-create-back { position:absolute; z-index:20; top:12px; left:max(16px,calc((100% - 680px)/2)); }
+.gp-enabled body.ghostsocial-v2 #mskCompose #mskcPostPanel { padding:100px 20px 32px !important; }
+.gp-enabled body.ghostsocial-v2 #mskCompose #mskcPostPanel .create-card { width:min(100%,680px); }
+.gp-enabled #mskcPostPanel .gp-composer-title { display:block; width:min(100%,680px); margin:0 auto 20px; font-size:26px; font-weight:650; letter-spacing:-.6px; }
+@media(max-width:520px) {
+  .gp-enabled body.ghostsocial-v2 #mskCompose > .gp-create-back { top:14px; left:12px; padding-inline:10px; }
+  .gp-enabled body.ghostsocial-v2 #mskCompose .mskc-tabs { left:auto; right:12px; transform:none; }
+  .gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .create-card { padding:16px; }
+  .gp-enabled body.ghostsocial-v2 :is(#screenCreate,#mskcPostPanel) .create-left { flex-basis:100%; }
+}
+/* A single segmented control replaces the bare text tabs and clipped outlines. */
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch { box-sizing:border-box; width:max-content !important; max-width:calc(100% - 32px); height:46px; margin:4px auto 10px !important; padding:4px; gap:4px !important; border:1px solid var(--border); border-radius:14px; background:var(--surface); }
+.gp-enabled body.ghostsocial-v2 #feedSwitch .fs-tab { display:inline-flex; align-items:center; justify-content:center; min-height:36px; min-width:100px; padding:8px 16px !important; border:0 !important; border-radius:10px !important; color:var(--sub); background:transparent; font-size:13px; font-weight:650; text-shadow:none !important; }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch .fs-tab.active { background:rgba(var(--gp-rgb),.15) !important; color:var(--primary); box-shadow:inset 0 0 0 1px rgba(var(--gp-rgb),.18); }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch .fs-tab::after { display:none !important; }
+.gp-enabled body.ghostsocial-v2 #feedSwitch .fs-tab:focus-visible { outline-offset:-2px; }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gp-view-profile { min-height:42px; justify-content:center; margin:0 0 14px; background:rgba(var(--gp-rgb),.12); color:var(--primary); border:1px solid rgba(var(--gp-rgb),.16); font-weight:600; }
+/* Empty media slots are not a second banner. A real media banner is the hero. */
+.gp-enabled body.ghostsocial-v2 .gs-profile-card > .gs-media-banner:empty { display:none !important; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card:has(> .gs-media-banner:empty) > .prof-av { margin-top:-48px !important; border:5px solid var(--bg); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card:has(> .gs-media-banner:not(:empty):not([hidden])) > .gs-profile-banner { display:none !important; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card > .gs-media-banner:not(:empty):not([hidden]) { width:100%; height:148px; margin:0; border:0; border-radius:20px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card:has(> .gs-media-banner:not(:empty):not([hidden])) > .prof-av { margin-top:-48px !important; border:5px solid var(--bg); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-card > .gs-profile-status:not([hidden]) { position:relative !important; inset:auto !important; transform:none !important; max-width:calc(100% - 32px); width:fit-content; margin:0 auto 16px !important; }
+.gp-enabled body.ghostsocial-v2 #screenProfile > .gs-profile-card > .gs-profile-tools { top:16px !important; left:16px !important; }
+/* Banner editor: bounded preview, scrolling content, stable action footer. */
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal { align-items:center; padding:24px; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal > .gs-banner-editor-sheet { display:flex; flex-direction:column; width:min(680px,100%); max-height:calc(100dvh - 48px); padding:0; overflow:hidden; border:1px solid var(--border-strong) !important; border-radius:22px !important; box-shadow:0 24px 100px #0009; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal > .gs-banner-editor-sheet::before,.gp-enabled body.ghostsocial-v2 #bannerEditorModal > .gs-banner-editor-sheet::after { display:none !important; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .modal-handle { display:none; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-profile-editor-head { flex-shrink:0; padding:20px 22px; border-bottom:1px solid var(--border); }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-editor-scroll { padding:20px 22px; overflow-y:auto; min-height:0; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-editor-preview { height:clamp(150px,24vh,220px); min-height:0; aspect-ratio:auto; border-radius:16px; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-editor-preview-bg { border-radius:inherit; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-source-card { padding:14px; border:1px solid var(--border); border-radius:14px; background:var(--bg); }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-add-source { width:100%; min-height:42px; border:1px dashed var(--border-strong); border-radius:11px; background:transparent; }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-editor-footer { flex-shrink:0; display:flex; gap:12px; padding:16px 22px; border-top:1px solid var(--border); background:var(--surface); }
+.gp-enabled body.ghostsocial-v2 #bannerEditorModal :is(.gs-banner-reset,.gs-banner-save) { flex:1 1 0; min-height:42px; border-radius:11px; }
+/* Local notification tray and the platform's unread rows. */
+.gp-notifications,.gp-notifications-toolbar,.gp-notif-count { display:none; }
+.gp-enabled .gp-notifications:not([hidden]) { display:block; position:fixed; z-index:450; right:18px; bottom:calc(var(--nav-h,48px) + 16px); width:min(330px,calc(100vw - 28px)); max-height:min(560px,70dvh); overflow:auto; padding:0; border:1px solid var(--border-strong,#3a3a43); border-radius:17px; color:var(--text,#f1f1f4); background:var(--surface,#1b1b1f); box-shadow:0 12px 48px #0008; font:13px/1.5 system-ui,sans-serif; }
+.gp-notifications-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 15px; border-bottom:1px solid var(--border,#28282e); }
+.gp-notifications-head button { padding:4px; font-size:10px; color:var(--sub); background:none; }
+.gp-notification-item { display:block; width:100%; padding:12px 15px; text-align:left; border:0; border-radius:0; border-bottom:1px solid var(--border); color:var(--text); background:transparent; cursor:pointer; }
+.gp-notification-item:hover { background:var(--surface2); }
+.gp-notification-item strong,.gp-notification-item span,.gp-notification-item small { display:block; overflow-wrap:anywhere; }
+.gp-notification-item span { color:#e3c782; font-size:12px; }
+.gp-notification-item small { color:var(--sub); margin-top:3px; font-size:11px; }
+.gp-notification-items > p { padding:14px 15px; color:var(--sub); }
+.gp-notification-error { color:#efb1b1 !important; }
+.gp-notifications-footer { display:flex; justify-content:space-between; gap:8px; padding:10px 12px; }
+.gp-notifications-footer button { min-height:34px; padding:7px 9px; border-radius:9px; font-size:11px; }
+.gp-notifications-footer button:last-child { background:var(--primary); color:#21172d; }
+.gp-collapsed :is(.gp-notification-items,.gp-notifications-footer) { display:none; }
+.gp-enabled.gp-live-notifications .gp-notifications-toolbar { display:flex; justify-content:flex-end; margin:0 0 12px; }
+.gp-notifications-toolbar button { padding:9px 12px; border:1px solid var(--border); border-radius:10px; color:var(--primary); background:var(--surface); }
+.gp-enabled .notif-card:is(.unread,.gp-unread) { padding:16px 12px; margin:6px 0; border:1px solid #d6b45a36; border-radius:13px; background:#e7b94312 !important; }
+.gp-enabled .notif-card:is(.unread,.gp-unread)::after { background:#e3bd56; }
+.gp-enabled .gp-notif-count:not([hidden]) { display:inline-flex; align-items:center; justify-content:center; min-width:23px; height:21px; margin-left:auto; padding:0 6px; border-radius:7px; font-size:10px; font-weight:700; color:#f2d485; background:#e7b9431f; }
+.gp-enabled.gp-live-notifications #dtNotifBadge { display:none !important; }
+.gp-enabled body:has(#screenNotif.active) .gp-notifications { display:none; }
+.gp-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+@media(max-width:520px) { .gp-enabled body.ghostsocial-v2 #bannerEditorModal { padding:12px; } .gp-enabled body.ghostsocial-v2 #bannerEditorModal > .gs-banner-editor-sheet { max-height:calc(100dvh - 24px); } .gp-enabled body.ghostsocial-v2 #bannerEditorModal .gs-banner-editor-scroll { padding:16px; } }
+/* Focused navigation: remove the two cross-service buttons requested by the user. */
+.gp-enabled :is(#dtSideLeft a[href^="/bank"],#dtChatLink,#gostPill) { display:none !important; }
+/* Compact profile action inside the account heading, not a full-width menu row. */
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gsm-head { flex-wrap:wrap; gap:12px; }
+.gp-enabled #gsMenuPanel .gsm-head > div:not(.gsm-av) { flex:1 1 120px; min-width:0; }
+.gp-enabled #gsMenuPanel .gsm-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.gp-enabled body.ghostsocial-v2 #gsMenuPanel .gp-view-profile { flex:0 1 auto; width:auto; min-height:36px; max-width:100%; margin:0 0 0 auto; padding:8px 11px; border:1px solid var(--border-strong); border-radius:10px; background:var(--surface2); color:var(--primary); font-size:11px; white-space:normal; }
+/* Named profile tabs read as a compact toolbar with equal-width actions. */
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs { gap:6px; min-height:56px; margin:0 14px 12px; padding:5px; border:1px solid var(--border); border-radius:13px; background:var(--surface); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab { min-height:42px; padding:9px 8px; border:0; border-radius:9px; gap:7px; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab.active { background:rgba(var(--gp-rgb),.15); box-shadow:inset 0 0 0 1px rgba(var(--gp-rgb),.16); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab::after { display:none !important; }
+.gp-enabled .gp-tab-label { font-size:11px; }
+.gp-enabled body.ghostsocial-v2 .gp-status-suggestion { width:100%; min-height:42px; padding:11px 14px; border:1px dashed var(--border-strong); border-radius:12px; background:transparent; color:var(--sub); font-size:12px; text-align:left; }
+.gp-enabled body.ghostsocial-v2 .gp-status-suggestion:hover { border-color:var(--primary); color:var(--primary); }
+.gp-enabled .gp-status-cancel { width:100%; min-height:38px; margin-top:10px; background:transparent; color:var(--sub); }
+.gp-enabled #dailyStatusModal > div { background:var(--surface) !important; border-color:var(--border-strong) !important; }
+/* A footer that fits narrow trays; the notification page action sits by its title. */
+.gp-notifications-footer { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.gp-notifications-footer button { min-width:0; min-height:38px; line-height:1.35; white-space:normal; overflow-wrap:anywhere; }
+.gp-enabled .gp-notifications-toolbar { float:right; margin:0 0 12px 12px; }
+.gp-enabled #screenNotif > h2 { min-height:42px; display:flex; align-items:center; }
+/* Preserve loading visibility instead of the platform's blanket spinner hiding. */
+.gp-enabled .spinner { display:inline-block !important; width:22px; height:22px; border:2px solid var(--border-strong); border-top-color:var(--primary); border-radius:50%; animation:gp-spin .8s linear infinite; }
+.gp-enabled .fa-spinner { display:inline-block !important; animation:gp-spin .8s linear infinite; }
+.gp-enabled .loader { display:flex; align-items:center; justify-content:center; gap:10px; min-height:100px; padding:24px; }
+.gp-enabled .gs-load-error { min-height:120px; padding:24px; border:1px solid var(--border); border-radius:14px; background:var(--surface); }
+@keyframes gp-spin { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .gp-enabled :is(.spinner,.fa-spinner) { animation:none; } }
+/* Comment cards keep the original reply, reaction, pagination and input handlers. */
+.gp-enabled body.ghostsocial-v2 #commentsModal .modal-sheet { border:1px solid var(--border-strong); border-radius:18px; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-item { margin:8px 0; padding:14px; border:1px solid var(--border); border-radius:13px; background:var(--bg); }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-item-row { gap:12px; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-author { display:flex; align-items:center; flex-wrap:wrap; gap:4px; font-size:12px; line-height:1.5; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-text { margin-top:7px; font-size:14px; line-height:1.65; overflow-wrap:anywhere; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-composer { border-top:1px solid var(--border); background:var(--surface); padding:14px 0 4px; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-input-row { gap:10px; border:0; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-input { min-height:42px; border-radius:11px; }
+.gp-enabled body.ghostsocial-v2 #commentsModal .comment-send { flex-shrink:0; min-height:42px; border-radius:11px; }
+@media(max-width:420px) { .gp-enabled body.ghostsocial-v2 .gs-profile-tabs { margin-inline:8px; gap:3px; } .gp-enabled body.ghostsocial-v2 .gs-profile-tabs .prof-tab { flex-direction:column; } .gp-enabled .gp-tab-label { font-size:10px; } }
+/* Profile content is a readable feed, including its loading and empty states.
+   Override the native square-thumbnail rules without replacing post handlers. */
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid { display:flex; flex-direction:column; align-items:stretch; gap:12px; padding:0 14px 20px; min-width:0; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > * { box-sizing:border-box; width:100%; min-width:0; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card,
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card:not(:has(.post-media,.media-grid)) { display:block; aspect-ratio:auto; height:auto; margin:0 !important; padding:20px !important; overflow:visible; border:1px solid var(--border); border-radius:15px; background:var(--bg); }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card { place-items:normal; text-align:left; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-header { display:grid !important; width:100%; box-sizing:border-box; justify-content:normal; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-footer { display:flex !important; width:100%; justify-content:flex-start; flex-wrap:wrap; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-menu-btn { display:flex !important; align-items:center; justify-content:center; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-content { width:100%; box-sizing:border-box; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-content,
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card:not(:has(.post-media,.media-grid)) .post-content { display:block; max-height:none; margin:0 0 12px; overflow:visible; font-size:15px; line-height:1.65; -webkit-line-clamp:unset; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card:has(.post-media,.media-grid) .post-media,
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .media-grid { position:relative; inset:auto; width:100%; height:auto; margin:12px 0; border:1px solid var(--border); border-radius:12px; overflow:hidden; grid-auto-rows:auto; align-content:normal; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .mg-item { height:auto; min-height:0 !important; aspect-ratio:1; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .mg-item :is(img,video) { max-height:520px !important; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .media-grid.g1 .mg-item { aspect-ratio:auto; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .media-grid.g1 .mg-item :is(img,video),
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card .post-media > :is(img,video) { display:block; width:100%; height:auto; max-height:520px !important; object-fit:contain; background:#09090b; }
+.gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > :is(.skel-post,.gs-skel-post,.gs-skeleton,.empty,.loader,.gs-load-error) { align-self:stretch; max-width:none; margin:0; border-radius:15px; }
+/* The switch now lives inside the header, aligned with the feed column. */
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch { width:calc(100% - 32px) !important; max-width:none; height:auto; min-height:46px; margin:4px 16px 12px !important; border-radius:12px; }
+.gp-enabled body.ghostsocial-v2:not(.miniska-mode) #feedSwitch .fs-tab { flex:1 1 0; min-width:0; border-radius:8px !important; }
+@media(max-width:520px) {
+  .gp-enabled body.ghostsocial-v2 .gs-profile-post-grid { padding-inline:8px; gap:10px; }
+  .gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card,
+  .gp-enabled body.ghostsocial-v2 .gs-profile-post-grid > .post-card:not(:has(.post-media,.media-grid)) { padding:14px !important; border-radius:12px; }
+}

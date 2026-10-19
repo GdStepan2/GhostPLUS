@@ -1,0 +1,15 @@
+{
+  "name": "ghostplus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Independent GhostSocial V2 interface extension",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/package.cjs",
+    "test:browser": "node tests/browser.cjs",
+    "promo": "node tools/render-promo.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
