@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GhostPLUS</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+<header><img src="../icons/icon48.png" width="40" height="40" alt=""><div><h1>Ghost<span>PLUS</span></h1><p>Привычный GhostSocial, удобнее на ПК.</p></div><span class="version">1.0</span></header>
+<main>
+<label class="master"><span><b>Включить GhostPLUS</b><small>Изменения применяются сразу</small></span><input type="checkbox" data-setting="enabled" role="switch"></label>
+<section><h2>АТМОСФЕРА</h2><div class="swatches" role="group" aria-label="Цвет акцента">
+<button data-accent="violet" aria-label="Лаванда" title="Лаванда"></button><button data-accent="mint" aria-label="Мята" title="Мята"></button><button data-accent="rose" aria-label="Роза" title="Роза"></button><button data-accent="blue" aria-label="Небо" title="Небо"></button>
+</div><label class="row"><span>Ширина ленты</span><select data-setting="width"><option value="compact">Компактная</option><option value="comfortable">Комфортная</option><option value="wide">Широкая</option></select></label>
+<label class="row"><span>Интерфейс для ПК</span><input type="checkbox" data-setting="desktopLayout" role="switch"></label>
+<label class="row"><span>Плавные анимации</span><input type="checkbox" data-setting="animations" role="switch"></label>
+<label class="row"><span>Прозрачная шапка</span><input type="checkbox" data-setting="glass" role="switch"></label>
+</section>
+<section><h2>ПРОФИЛИ И УДОБСТВО</h2>
+<label class="row"><span>Дата регистрации</span><input type="checkbox" data-setting="showRegDate" role="switch"></label>
+<label class="row"><span>Оценка даты по активности</span><input type="checkbox" data-setting="estimateDates" role="switch"></label>
+<label class="row"><span>Живые уведомления<small>Счётчик, панель и ручное прочтение</small></span><input type="checkbox" data-setting="liveNotifications" role="switch"></label>
+<label class="row"><span>Звук уведомлений</span><input type="checkbox" data-setting="notificationSound" role="switch"></label>
+<label class="row"><span>Уведомления Windows</span><input type="checkbox" data-setting="windowsNotifications" role="switch"></label>
+<label class="row"><span>Горячие клавиши</span><input type="checkbox" data-setting="hotkeys" role="switch"></label>
+<p class="hint">Alt + Shift + N — новый пост<br>Alt + Shift + F — поиск</p></section>
+<details><summary>Даты и уведомления</summary><p>Точная дата берётся из профиля. Если её нет, расширение ищет самую раннюю доступную публикацию или комментарий и показывает «Создан примерно…». Регистрация могла быть раньше. Для оценки загружается до трёх дополнительных страниц публикаций за просмотр профиля.</p><p>События обновляются через механизм сайта и его проверку раз в 15 секунд. Нажатое уведомление отмечается прочитанным локально в текущей вкладке; сайт предоставляет только общий серверный метод «Прочитать все». Личные переписки GhostChat не загружаются.</p><p>Уведомления Windows работают, пока сайт открыт в браузере, и зависят от системных настроек. При включённых Windows-уведомлениях используется системный звук; без них звук страницы доступен после первого взаимодействия с сайтом.</p></details>
+<footer><a href="https://ghostecos.duckdns.org/v2/social" target="_blank" rel="noopener">Открыть GhostSocial ↗</a><button id="reset">Сбросить</button></footer>
+<p id="status" role="status" aria-live="polite"></p>
+</main><script src="../shared/settings.js"></script><script src="popup.js"></script></body></html>
